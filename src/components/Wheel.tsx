@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { APP_CONFIG, type Prize } from '../config';
 import { i18n } from '../lib/i18n';
 import { getRandomPrize, getRandomRotation, easeOutCubic } from '../lib/random';

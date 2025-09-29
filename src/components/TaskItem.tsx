@@ -83,7 +83,7 @@ export const TaskItem = ({ taskKey, completed, onToggle }: TaskItemProps) => {
         'from-blue-500 to-cyan-600': 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border-blue-400 text-white shadow-lg shadow-blue-500/20',
         'from-cyan-500 to-blue-600': 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400 text-white shadow-lg shadow-cyan-500/20'
       };
-      return colorMap[config.color] || 'bg-white/20 border-white/50 text-white shadow-lg';
+      return colorMap[config.color as keyof typeof colorMap] || 'bg-white/20 border-white/50 text-white shadow-lg';
     }
     return 'bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50';
   };
@@ -95,7 +95,7 @@ export const TaskItem = ({ taskKey, completed, onToggle }: TaskItemProps) => {
         'from-blue-500 to-cyan-600': 'bg-gradient-to-r from-blue-500/10 to-cyan-500/10',
         'from-cyan-500 to-blue-600': 'bg-gradient-to-r from-cyan-500/10 to-blue-500/10'
       };
-      return glowMap[config.color] || 'bg-gradient-to-r from-blue-500/10 to-purple-500/10';
+      return glowMap[config.color as keyof typeof glowMap] || 'bg-gradient-to-r from-blue-500/10 to-purple-500/10';
     }
     return '';
   };

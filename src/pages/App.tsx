@@ -6,9 +6,9 @@ import { Wheel } from '../components/Wheel';
 import { PrizeModal } from '../components/PrizeModal';
 import { ProgressSteps } from '../components/ProgressSteps';
 import { AdminPanel } from '../components/AdminPanel';
-import { storage, generateId, validateEmail, type Entry, type TaskKey } from '../lib/storage';
+import { storage, generateId, validateEmail, type Entry } from '../lib/storage';
+import { type TaskKey } from '../config';
 import { i18n } from '../lib/i18n';
-import { APP_CONFIG } from '../config';
 
 const TASK_KEYS: TaskKey[] = ['ig_cb', 'x_cb', 'ig_tron', 'x_tron', 'tweet'];
 
@@ -27,7 +27,7 @@ export const App = () => {
   const [showPrizeModal, setShowPrizeModal] = useState(false);
   const [prize, setPrize] = useState<string | null>(null);
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
-  const [wasAlreadyPlayedAtSpin, setWasAlreadyPlayedAtSpin] = useState(false);
+  const [wasAlreadyPlayedAtSpin] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
 
   const completedTasks = Object.values(tasks).filter(Boolean).length;
@@ -59,7 +59,7 @@ export const App = () => {
       id: generateId(),
       email: email.toLowerCase(),
       ts: new Date().toISOString(),
-      tasks: { ...tasks },
+      tasks: tasks as { ig_cb: boolean; x_cb: boolean; ig_tron: boolean; x_tron: boolean; tweet: boolean },
       prize: prize.label
     };
     
@@ -68,11 +68,6 @@ export const App = () => {
     setAlreadyPlayed(true);
   };
 
-  const handleSpin = () => {
-    if (!canSpin || isSpinning) return;
-    setWasAlreadyPlayedAtSpin(alreadyPlayed);
-    setIsSpinning(true);
-  };
 
   const handleClosePrizeModal = () => {
     setShowPrizeModal(false);
@@ -176,7 +171,7 @@ export const App = () => {
       {/* Prize Modal */}
       <PrizeModal
         isOpen={showPrizeModal}
-        prize={prize ? { id: '', label: prize } : null}
+        prize={prize ? { id: 'mousepad', label: prize } : null}
         onClose={handleClosePrizeModal}
         alreadyPlayed={wasAlreadyPlayedAtSpin}
       />

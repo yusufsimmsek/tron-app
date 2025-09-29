@@ -1,10 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { type Prize } from '../config';
 import { i18n } from '../lib/i18n';
 
 interface PrizeModalProps {
   isOpen: boolean;
-  prize: Prize | null;
+  prize: { id: string; label: string } | null;
   onClose: () => void;
   alreadyPlayed: boolean;
 }

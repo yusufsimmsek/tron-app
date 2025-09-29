@@ -3,7 +3,7 @@ import { APP_CONFIG, type Prize } from '../config';
 export const getRandomPrize = (): Prize => {
   const prizes = APP_CONFIG.PRIZES;
   const randomIndex = Math.floor(Math.random() * prizes.length);
-  return prizes[randomIndex];
+  return prizes[randomIndex] as Prize;
 };
 
 export const getRandomRotation = (): number => {
